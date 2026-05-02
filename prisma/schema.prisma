@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Customer {
+  id         String   @id @default(uuid())
+  name       String
+  phone      String?
+  address    String?
+  tags       String?  // JSON string or comma-separated
+  createdAt  DateTime @default(now())
+  orders     Order[]
+}
+
+model Order {
+  id           String   @id @default(uuid())
+  customerId   String
+  customer     Customer @relation(fields: [customerId], references: [id])
+  items        String   // JSON string: [{ type: "shirt", qty: 2 }]
+  totalPrice   Float
+  status       String   @default("Received") // Received, Washing, Drying, Ready, Delivered
+  deliveryTime DateTime?
+  createdAt    DateTime @default(now())
+}
+
+model Service {
+  id    String @id @default(uuid())
+  name  String
+  price Float
+}
+
+model Setting {
+  key   String @id
+  value String
+}
