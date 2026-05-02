@@ -56,3 +56,8 @@ export type Order = Prisma.OrderModel
  * 
  */
 export type Service = Prisma.ServiceModel
+/**
+ * Model Setting
+ * 
+ */
+export type Setting = Prisma.SettingModel

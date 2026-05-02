@@ -11,4 +11,5 @@
 export type * from './models/Customer'
 export type * from './models/Order'
 export type * from './models/Service'
+export type * from './models/Setting'
 export type * from './commonInputTypes'
